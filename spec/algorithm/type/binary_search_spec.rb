@@ -11,4 +11,10 @@ describe "Binary Search" do
     index = binarySearch(array, 175, nil, nil)
     expect(index).to eq(-1)
   end
+
+  it "Ensure function binarySearch in array search 23 return 5" do
+    array = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]
+    index = binarySearch(array, 23, 0, array.size)
+    expect(index).to eq(5)
+  end
 end

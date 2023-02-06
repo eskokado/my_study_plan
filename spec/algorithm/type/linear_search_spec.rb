@@ -6,4 +6,10 @@ describe "Linear Search" do
     result = search_array(array, value)
     expect(result).to eq("Target element is found")
   end
+
+  value_invalid = 75
+  it "Ensure Search element(#{value_invalid}) result not found" do
+    result = search_array(array, value_invalid)
+    expect(result).to eq("Element is not found")
+  end
 end

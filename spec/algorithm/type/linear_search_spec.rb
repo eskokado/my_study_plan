@@ -19,4 +19,10 @@ describe "Linear Search" do
     result = search_array_index(array, value_valid)
     expect(result).to eq("Element 110 is present at index 6")
   end
+
+  value_invalid = 175
+  it "ensure search by element #{value_invalid} is not present in array" do
+    result = search_array_index(array, value_invalid)
+    expect(result).to eq("Element 175 is not present in array")
+  end
 end

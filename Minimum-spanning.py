@@ -7,7 +7,7 @@ def prim(graph, start):
         (cost, start, to)
         for to, cost in graph[start].items()
     ]
-    heapq.heapify(edges)
+    heapq.heapify(edges) #Converting EdgesList to a Heap
 
     while edges:
         cost, frm, to = heapq.heappop(edges)

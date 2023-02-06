@@ -12,4 +12,11 @@ describe "Linear Search" do
     result = search_array(array, value_invalid)
     expect(result).to eq("Element is not found")
   end
+
+  value_valid = 110
+  array = [10, 20, 80, 30, 60, 50, 110, 100, 130, 170]
+  it "ensure found #{value_valid} in array result index and element" do
+    result = search_array_index(array, value_valid)
+    expect(result).to eq("Element 110 is present at index 6")
+  end
 end

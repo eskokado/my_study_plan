@@ -8,4 +8,8 @@ describe "Count string" do
     upper = countingString.countUpper
     expect(upper).to eq(5)
   end
+  it "Ensure count char lower in string" do
+    lower = countingString.countLower
+    expect(lower).to eq(8)
+  end
 end

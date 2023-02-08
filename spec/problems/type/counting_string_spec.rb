@@ -12,4 +12,8 @@ describe "Count string" do
     lower = countingString.countLower
     expect(lower).to eq(8)
   end
+  it "Ensure count number in string" do
+    number = countingString.countNumber
+    expect(number).to eq(4)
+  end
 end

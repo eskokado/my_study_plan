@@ -16,4 +16,8 @@ describe "Count string" do
     number = countingString.countNumber
     expect(number).to eq(4)
   end
+  it "Ensure count character special in string" do
+    special = countingString.countSpecial
+    expect(special).to eq(2)
+  end
 end

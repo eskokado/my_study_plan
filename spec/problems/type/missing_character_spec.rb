@@ -8,4 +8,11 @@ describe "Missing Characters" do
 
     expect(result).to eq("alyz")
   end
+  it "should call missing characters 'welcome to geeksforgeeks' result 'abdhijnpquvxyz'" do
+    str = "welcome to geeksforgeeks"
+    gfg = GFG.new
+    result = gfg.missing_chars(str)
+
+    expect(result).to eq("abdhijnpquvxyz")
+  end
 end

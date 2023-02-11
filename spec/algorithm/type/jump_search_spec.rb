@@ -4,7 +4,14 @@ describe "Jump Search" do
   expectValue = 10
   size = arr.size
   jumpSearch = JumpSearch.new
+  item = 77
   it "Given array call jump search result #{expectValue}" do
-    jumpSearch.search(arr, size, 77)
+    jumpSearch.search(arr, size, item)
+  end
+
+  item = 99
+  expectValue = -1
+  it "Given array call jump search result #{expectValue}" do
+    jumpSearch.search(arr, size, item)
   end
 end

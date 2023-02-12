@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithm/type/binary_search'
+require_relative '../../../app/algorithms/searching/binary_search'
 describe "Binary Search" do
   binarySearch = BinarySearch.new
   it "Ensure call binarySearch function in array search return 6" do

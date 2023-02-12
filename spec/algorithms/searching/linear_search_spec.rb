@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithm/type/linear_search'
+require_relative '../../../app/algorithms/searching/linear_search'
 describe "Linear Search" do
   value = 20
   array = [10, 50, 30, 70, 80, 60, 20, 90, 40]

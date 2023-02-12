@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithm/type/bubble_sort'
+require_relative '../../../app/algorithms/sorting/bubble_sort'
 describe "Bubble Sort" do
   array = [5, 1, 4, 2, 8]
   bubbleSort = BubbleSort.new

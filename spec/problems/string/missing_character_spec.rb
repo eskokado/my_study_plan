@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/type/missing_character'
+require_relative '../../../app/problems/string/missing_character'
 
 describe "Missing Characters" do
   it "should call missing characters 'The quick brown fox jumps over the dog' result 'alyz'" do

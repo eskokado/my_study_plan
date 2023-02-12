@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/type/find_date_future'
+require_relative '../../../app/problems/date/find_date_future'
 
 describe "Find date future" do
   it "Should ensure find date future" do

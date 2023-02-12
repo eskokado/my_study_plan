@@ -6,4 +6,10 @@ describe "Fibonacci search" do
     result = Algorithms::Searching.fibonacci_search(array, item)
     expect(result).to be > -1
   end
+
+  it "Given an array call fibonacci search return -1" do
+    item = 11
+    result = Algorithms::Searching.fibonacci_search(array, item)
+    expect(result).to be == -1
+  end
 end

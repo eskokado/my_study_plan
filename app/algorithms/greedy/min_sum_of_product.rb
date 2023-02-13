@@ -5,7 +5,7 @@ module Algorithms
       arrayB.sort!
 
       result = 0
-      for i in 0...(arrayA.length)
+      for i in 0...arrayA.length
         result += arrayA[i] * arrayB[i]
       end
       result

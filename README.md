@@ -1,4 +1,5 @@
-    <style>
+<head>
+<style>
         table {
             border-collapse: collapse;
             border-spacing: 0;

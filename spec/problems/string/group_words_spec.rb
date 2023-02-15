@@ -5,4 +5,8 @@ describe "Group Words" do
     result = Problems::String.group_words(words)
     expect(result).to match_array([%w[ate eat tea], %w[tan nat], %w[bat]])
   end
+
+  it "handles empty input" do
+    expect(Problems::String.group_words([])).to eq([])
+  end
 end

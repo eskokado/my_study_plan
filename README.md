@@ -1,5 +1,5 @@
 # My Study Plan
-Este repositório contém meu plano de estudos pessoal para evoluir em desenvolvedor web, mobile e desktop.
+Este repositório contém meu plano de estudos pessoal para iniciar a carreira em backend, avançar par pleno, sênior e chegar a software enginner.
 
 ## Objetivos
 Meus principais objetivos ao criar este plano de estudos são:
@@ -11,10 +11,24 @@ Ter um registro do meu progresso e ajustar meu plano de estudos quando necessár
 ## Estrutura
 O plano de estudos está dividido em várias seções, cada uma focando em uma área específica. As seções incluem:
 
-- Ruby on rails (Web e backend);
-- Ententer o objetivos dos algoritimos e suas aplicações.
-
-Dentro de cada seção, há uma lista de tópicos que eu quero estudar. Ao lado de cada tópico, há uma estimativa de tempo que acredito que levará para dominá-lo, bem como uma prioridade indicando o quão importante é para mim aprender esse tópico no momento.
+- Hard-skill
+  - Frontend - Reactjs;
+  - Backend:
+      - Ruby on Rails;
+      - Nodejs, express, typescript
+  - Banco de dados
+    - Sqlite
+    - Postgresql
+    - MySql
+  - Git e Github
+  - Multi-cloud
+  - Microservice
+- Soft-skill
+  - Trabalhar em equipe
+  - Autogestão
+  - Evolução
+  - Network virtual
+  - Proativo
 
 ## Progresso
 Para acompanhar meu progresso, planejo manter uma lista de tarefas no GitHub. Cada tarefa corresponderá a um tópico no meu plano de estudos e eu a marcarei como concluída assim que terminar de estudar aquele tópico. Também pretendo registrar minhas dúvidas e anotações em cada tarefa para me ajudar a revisar o conteúdo mais tarde.

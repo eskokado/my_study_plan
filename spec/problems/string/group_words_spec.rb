@@ -9,4 +9,8 @@ describe "Group Words" do
   it "handles empty input" do
     expect(Problems::String.group_words([])).to eq([])
   end
+
+  it "handles input with single word" do
+    expect(Problems::String.group_words(%w[hello])).to eq([%w[hello]])
+  end
 end

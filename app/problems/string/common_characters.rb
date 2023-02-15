@@ -10,7 +10,7 @@ module Problems
       (1...strings.length).each do |i|
         current_count = Array.new(26, 0)
         strings[i].each_char do |char|
-          current_count[char.ord - 'a'.ord] += 1
+          current_count[char.ord - 'a'.ord] = 1
         end
         char_count.each_with_index do |count, index|
           char_count[index] = [count, current_count[index]].min

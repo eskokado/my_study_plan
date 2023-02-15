@@ -5,4 +5,10 @@ describe "Common Characters" do
     result = Problems::String.common_characters(array)
     expect(result).to eq(['a', 'n'])
   end
+
+  it 'returns common characters in three strings' do
+    array = ['banana', 'caneta', 'dança']
+    result = Problems::String.common_characters(array)
+    expect(result).to eq(['a', 'n'])
+  end
 end

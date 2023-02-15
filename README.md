@@ -1,5 +1,5 @@
 # My Study Plan
-Este repositório contém meu plano de estudos pessoal para [inserir sua área de estudos aqui].
+Este repositório contém meu plano de estudos pessoal para iniciar a carreira em backend, avançar par pleno, sênior e chegar a software enginner.
 
 ## Objetivos
 Meus principais objetivos ao criar este plano de estudos são:

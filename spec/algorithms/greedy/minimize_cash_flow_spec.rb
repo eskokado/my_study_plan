@@ -22,7 +22,21 @@ RSpec.describe Algorithms::Greedy do
       expect(result).to eq([])
     end
 
-
+    it "correctly balances the debts in a list of transactions with multiple debts involving the same people" do
+      transactions = [
+        ["Alice", "Bob", 10],
+        ["Bob", "Charlie", 5],
+        ["Charlie", "David", 15],
+        ["David", "Alice", 20],
+        ["Alice", "Charlie", 25]
+      ]
+      result = Algorithms::Greedy.minimize_cash_flow(transactions)
+      expect(result).to match_array([
+                                      ["Alice", "Charlie", 20],
+                                      ["David", "Charlie", 15],
+                                      ["David", "Bob", 5]
+                                    ])
+    end
 
   end
 end

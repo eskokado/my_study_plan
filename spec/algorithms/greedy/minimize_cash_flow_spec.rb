@@ -15,6 +15,15 @@ RSpec.describe Algorithms::Greedy do
                                       ["David", "Bob", 5]
                                     ])
     end
+
+    it "returns an empty list if there are no debts" do
+      transactions = []
+      result = Algorithms::Greedy.minimize_cash_flow(transactions)
+      expect(result).to eq([])
+    end
+
+
+
   end
 end
 # it "prints the optimal payment plan" do

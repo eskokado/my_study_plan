@@ -1,5 +1,6 @@
 require_relative '../../../app/problems/date/day_of_week'
 describe "Day of Week" do
+
   it "returns 0 for Sunday" do
     expect(Problems::Date.day_of_week(2023, 2, 19)).to eq(0)
   end
@@ -23,4 +24,8 @@ describe "Day of Week" do
   it "returns 5 for Friday" do
     expect(Problems::Date.day_of_week(2023, 2, 24)).to eq(5)
   end
+
+    it "returns 6 for Saturday" do
+      expect(Problems::Date.day_of_week(2023, 2, 25)).to eq(6)
+    end
 end

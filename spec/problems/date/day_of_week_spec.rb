@@ -8,4 +8,8 @@ describe "Day of Week" do
     expect(Problems::Date.day_of_week(2023, 2, 20)).to eq(1)
   end
 
+  it "returns 2 for Tuesday" do
+    expect(Problems::Date.day_of_week(2023, 2, 21)).to eq(2)
+  end
+
 end

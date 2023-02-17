@@ -1,92 +1,41 @@
-name: Release Drafter
+name: "Release Drafter"
 
 on:
   push:
+    # branches to consider in the event; optional, defaults to all
     branches:
       - dev
+  # pull_request event is required only for autolabeler
+  pull_request:
+    # Only following types are handled by the action, but one can default to all as well
+    types: [opened, reopened, synchronize]
+  # pull_request_target event is required for autolabeler to support PRs from forks
+  # pull_request_target:
+  #   types: [opened, reopened, synchronize]
+
+permissions:
+  contents: read
 
 jobs:
   update_release_draft:
+    permissions:
+      # write permission is required to create a github release
+      contents: write
+      # write permission is required for autolabeler
+      # otherwise, read permission is required at least
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '14.x'
-      - name: Install dependencies
-        run: npm install
-      - name: Draft release notes
-        uses: release-drafter/release-drafter@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          config-path: .github/release-drafter.yml
+      # (Optional) GitHub Enterprise requires GHE_HOST variable set
+      #- name: Set GHE_HOST
+      #  run: |
+      #    echo "GHE_HOST=${GITHUB_SERVER_URL##https:\/\/}" >> $GITHUB_ENV
 
-env:
-  PROJECT_NAME: "Fase 2 Nível 3 Algorithm and Problems"
-
-projects:
-  - name: "${{ env.PROJECT_NAME }}"
-    title: "Release notes for ${{ env.PROJECT_NAME }}"
-    tag: "${{ env.PROJECT_NAME | slugify }}"
-    match:
-      - "(?i)${{ env.PROJECT_NAME }}.*"
-    include-labels:
-      - "${{ env.PROJECT_NAME | slugify }}"
-    exclude-labels:
-      - "${{ env.PROJECT_NAME | slugify }} - ignore"
-
-categories:
-  - title: "Novas funcionalidades"
-    labels:
-      - "feature"
-  - title: "Correções de bugs"
-    labels:
-      - "bug"
-
-name-template: "Release {version}"
-tag-template: "v{version}"
-
-template: |
-  # ${{ env.PROJECT_NAME }}
-
-  ## Short description
-
-  Uma descrição curta do ${{ env.PROJECT_NAME }}.
-
-  ## Novas funcionalidades
-
-  ${{#each categories}}
-    {{#if this.labels}}
-    {{#if has_entries this.issues}}
-    ### {{this.title}}
-
-    {{#each this.issues}}
-      - [{{.title}}]({{.html_url}}) ({{.number}}){{#if .labels}} {{#each .labels}} `{{.name}}` {{/each}}{{/if}}{{#if .pull_request}} ([#{{.pull_request.number}}]({{.pull_request.html_url}})){{/if}} by @{{.user.login}}
-    {{/each}}
-    {{/if}}
-    {{/if}}
-  {{/each}}
-
-  ## Correções de bugs
-
-  ${{#each categories}}
-    {{#if this.labels}}
-    {{#if has_entries this.issues}}
-    ### {{this.title}}
-
-    {{#each this.issues}}
-      - [{{.title}}]({{.html_url}}) ({{.number}}){{#if .labels}} {{#each .labels}} `{{.name}}` {{/each}}{{/if}}{{#if .pull_request}} ([#{{.pull_request.number}}]({{.pull_request.html_url}})){{/if}} by @{{.user.login}}
-    {{/each}}
-    {{/if}}
-    {{/if}}
-  {{/each}}
-
-  ## Lista de atividades
-
-  | Nome do usuário | Pull Request | Issue | Labels |
-  | --------------- | ------------ | ----- | ------ |
-  {{#each data}}
-    | {{this.nome_usuario}} | [PR{{this.numero_pull_request}}]({{this.link_pull_request}}) | [Issue{{this.numero_issue}}]({{this.link_issue}}) | {{#if this.labels}}
-  {{/each}}
+      # Drafts your next Release notes as Pull Requests are merged into "master"
+      - uses: release-drafter/release-drafter@v5
+        # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
+        # with:
+        #   config-name: my-config.yml
+        #   disable-autolabeler: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

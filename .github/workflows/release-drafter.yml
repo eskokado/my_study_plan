@@ -1,55 +1,41 @@
-name-template: '{{default "Release" release}}'
-tag-template: '{{version}}'
-categories:
-  - name: 'Features'
-    label: 'feature'
-    match:
-      - type: 'pull_request'
-        label: 'feature'
-  - name: 'Bug Fixes'
-    label: 'bug'
-    match:
-      - type: 'pull_request'
-        label: 'bug'
-  - name: 'Documentation'
-    label: 'documentation'
-    match:
-      - type: 'pull_request'
-        label: 'documentation'
-  - name: 'Other Changes'
-    label: ''
-    match:
-      - type: 'pull_request'
-  - name: 'Known Issues'
-    label: 'known issue'
-    match:
-      - type: 'issue'
-        label: 'known issue'
+name: "Release Drafter"
 
-template: |
-  {{#if notes}}
-  {{#each notes}}
-  {{this}}
-  {{/each}}
-  {{/if}}
+on:
+  push:
+    # branches to consider in the event; optional, defaults to all
+    branches:
+      - dev
+  # pull_request event is required only for autolabeler
+  pull_request:
+    # Only following types are handled by the action, but one can default to all as well
+    types: [opened, reopened, synchronize]
+  # pull_request_target event is required for autolabeler to support PRs from forks
+  # pull_request_target:
+  #   types: [opened, reopened, synchronize]
 
-  {{#each categories}}
-  {{#if changes.[this.name]}}
-  ### {{this.name}}
+permissions:
+  contents: read
 
-  {{#each changes.[this.name]}}
-  - {{#if this.pull_request}}
-    [{{this.pull_request.title}}]({{this.pull_request.html_url}}) ([#{{this.pull_request.number}}]({{this.pull_request.html_url}}))
-    {{/if}}
-    {{#if this.issue}}
-    [{{this.issue.title}}]({{this.issue.html_url}}) ([#{{this.issue.number}}]({{this.issue.html_url}}))
-    {{/if}}
-    {{#if this.labels}}
-    {{#each this.labels}}
-    {{this}} 
-    {{/each}}
-    {{/if}}
-  {{/each}}
+jobs:
+  update_release_draft:
+    permissions:
+      # write permission is required to create a github release
+      contents: write
+      # write permission is required for autolabeler
+      # otherwise, read permission is required at least
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      # (Optional) GitHub Enterprise requires GHE_HOST variable set
+      #- name: Set GHE_HOST
+      #  run: |
+      #    echo "GHE_HOST=${GITHUB_SERVER_URL##https:\/\/}" >> $GITHUB_ENV
 
-  {{/if}}
-  {{/each}}
+      # Drafts your next Release notes as Pull Requests are merged into "master"
+      - uses: release-drafter/release-drafter@v5
+        # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
+        # with:
+        #   config-name: my-config.yml
+        #   disable-autolabeler: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

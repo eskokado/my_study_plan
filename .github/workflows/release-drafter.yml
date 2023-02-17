@@ -37,67 +37,67 @@ jobs:
 env:
   PROJECT_NAME: "Fase 2 Nível 3 Algorithm and Problems"
 
-projects:
-  - name: "${{ env.PROJECT_NAME }}"
-    title: "Release notes for ${{ env.PROJECT_NAME }}"
-    tag: "${{ env.PROJECT_NAME | slugify }}"
-    match:
-      - "(?i)${{ env.PROJECT_NAME }}.*"
-    include-labels:
-      - "${{ env.PROJECT_NAME | slugify }}"
-    exclude-labels:
-      - "${{ env.PROJECT_NAME | slugify }} - ignore"
+  projects:
+    - name: "${{ env.PROJECT_NAME }}"
+      title: "Release notes for ${{ env.PROJECT_NAME }}"
+      tag: "${{ env.PROJECT_NAME | slugify }}"
+      match:
+        - "(?i)${{ env.PROJECT_NAME }}.*"
+      include-labels:
+        - "${{ env.PROJECT_NAME | slugify }}"
+      exclude-labels:
+        - "${{ env.PROJECT_NAME | slugify }} - ignore"
 
-categories:
-  - title: "Novas funcionalidades"
-    labels:
-      - "feature"
-  - title: "Correções de bugs"
-    labels:
-      - "bug"
+  categories:
+    - title: "Novas funcionalidades"
+      labels:
+        - "feature"
+    - title: "Correções de bugs"
+      labels:
+        - "bug"
 
-name-template: "Release {version}"
-tag-template: "v{version}"
+  name-template: "Release {version}"
+  tag-template: "v{version}"
 
-template: |
-  # ${{ env.PROJECT_NAME }}
-
-  ## Short description
-
-  Uma descrição curta do ${{ env.PROJECT_NAME }}.
-
-  ## Novas funcionalidades
-
-  ${{#each categories}}
-    {{#if this.labels}}
-    {{#if has_entries this.issues}}
-    ### {{this.title}}
-
-    {{#each this.issues}}
-      - [{{.title}}]({{.html_url}}) ({{.number}}){{#if .labels}} {{#each .labels}} `{{.name}}` {{/each}}{{/if}}{{#if .pull_request}} ([#{{.pull_request.number}}]({{.pull_request.html_url}})){{/if}} by @{{.user.login}}
+  template: |
+    # ${{ env.PROJECT_NAME }}
+  
+    ## Short description
+  
+    Uma descrição curta do ${{ env.PROJECT_NAME }}.
+  
+    ## Novas funcionalidades
+  
+    ${{#each categories}}
+      {{#if this.labels}}
+      {{#if has_entries this.issues}}
+      ### {{this.title}}
+  
+      {{#each this.issues}}
+        - [{{.title}}]({{.html_url}}) ({{.number}}){{#if .labels}} {{#each .labels}} `{{.name}}` {{/each}}{{/if}}{{#if .pull_request}} ([#{{.pull_request.number}}]({{.pull_request.html_url}})){{/if}} by @{{.user.login}}
+      {{/each}}
+      {{/if}}
+      {{/if}}
     {{/each}}
-    {{/if}}
-    {{/if}}
-  {{/each}}
-
-  ## Correções de bugs
-
-  ${{#each categories}}
-    {{#if this.labels}}
-    {{#if has_entries this.issues}}
-    ### {{this.title}}
-
-    {{#each this.issues}}
-      - [{{.title}}]({{.html_url}}) ({{.number}}){{#if .labels}} {{#each .labels}} `{{.name}}` {{/each}}{{/if}}{{#if .pull_request}} ([#{{.pull_request.number}}]({{.pull_request.html_url}})){{/if}} by @{{.user.login}}
+  
+    ## Correções de bugs
+  
+    ${{#each categories}}
+      {{#if this.labels}}
+      {{#if has_entries this.issues}}
+      ### {{this.title}}
+  
+      {{#each this.issues}}
+        - [{{.title}}]({{.html_url}}) ({{.number}}){{#if .labels}} {{#each .labels}} `{{.name}}` {{/each}}{{/if}}{{#if .pull_request}} ([#{{.pull_request.number}}]({{.pull_request.html_url}})){{/if}} by @{{.user.login}}
+      {{/each}}
+      {{/if}}
+      {{/if}}
     {{/each}}
-    {{/if}}
-    {{/if}}
-  {{/each}}
-
-  ## Lista de atividades
-
-  | Nome do usuário | Pull Request | Issue | Labels |
-  | --------------- | ------------ | ----- | ------ |
-  {{#each data}}
-    | {{this.nome_usuario}} | [PR{{this.numero_pull_request}}]({{this.link_pull_request}}) | [Issue{{this.numero_issue}}]({{this.link_issue}}) | {{#if this.labels}}
-  {{/each}}
+  
+    ## Lista de atividades
+  
+    | Nome do usuário | Pull Request | Issue | Labels |
+    | --------------- | ------------ | ----- | ------ |
+    {{#each data}}
+      | {{this.nome_usuario}} | [PR{{this.numero_pull_request}}]({{this.link_pull_request}}) | [Issue{{this.numero_issue}}]({{this.link_issue}}) | {{#if this.labels}}
+    {{/each}}

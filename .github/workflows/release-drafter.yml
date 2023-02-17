@@ -34,7 +34,7 @@ jobs:
           config-path: .github/release-drafter.yml
 
 env:
-  PROJECT_NAME: "My Study Plan"
+  PROJECT_NAME: "f2n3_algorithm_problemsn"
 
 projects:
   - name: "${{ env.PROJECT_NAME }}"

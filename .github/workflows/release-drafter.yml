@@ -1,0 +1,92 @@
+name: Release Drafter
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update_release_draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Install dependencies
+        run: npm install
+      - name: Draft release notes
+        uses: release-drafter/release-drafter@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-path: .github/release-drafter.yml
+
+env:
+  PROJECT_NAME: "My Study Plan"
+
+projects:
+  - name: "${{ env.PROJECT_NAME }}"
+    title: "Release notes for ${{ env.PROJECT_NAME }}"
+    tag: "${{ env.PROJECT_NAME | slugify }}"
+    match:
+      - "(?i)${{ env.PROJECT_NAME }}.*"
+    include-labels:
+      - "${{ env.PROJECT_NAME | slugify }}"
+    exclude-labels:
+      - "${{ env.PROJECT_NAME | slugify }} - ignore"
+
+categories:
+  - title: "Novas funcionalidades"
+    labels:
+      - "feature"
+  - title: "Correções de bugs"
+    labels:
+      - "bug"
+
+name-template: "Release {version}"
+tag-template: "v{version}"
+
+template: |
+  # ${{ env.PROJECT_NAME }}
+
+  ## Short description
+
+  Uma descrição curta do ${{ env.PROJECT_NAME }}.
+
+  ## Novas funcionalidades
+
+  ${{#each categories}}
+    {{#if this.labels}}
+    {{#if has_entries this.issues}}
+    ### {{this.title}}
+
+    {{#each this.issues}}
+      - [{{.title}}]({{.html_url}}) ({{.number}}){{#if .pull_request}} ([#{{.pull_request.number}}]({{.pull_request.html_url}})){{/if}} by @{{.user.login}}
+    {{/each}}
+    {{/if}}
+    {{/if}}
+  {{/each}}
+
+  ## Correções de bugs
+
+  ${{#each categories}}
+    {{#if this.labels}}
+    {{#if has_entries this.issues}}
+    ### {{this.title}}
+
+    {{#each this.issues}}
+      - [{{.title}}]({{.html_url}}) ({{.number}}){{#if .pull_request}} ([#{{.pull_request.number}}]({{.pull_request.html_url}})){{/if}} by @{{.user.login}}
+    {{/each}}
+    {{/if}}
+    {{/if}}
+  {{/each}}
+
+  ## Lista de atividades
+
+  | Nome do usuário | Pull Request | Issue |
+  | --------------- | ------------ | ----- |
+  {{#each data}}
+  | {{this.nome_usuario}} | [PR{{this.numero_pull_request}}]({{this.link_pull_request}}) | [Issue{{this.numero_issue}}]({{this.link_issue}}) |
+  {{/each}}

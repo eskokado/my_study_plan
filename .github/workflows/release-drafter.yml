@@ -1,103 +1,55 @@
-name: "Release Drafter"
+name-template: '{{default "Release" release}}'
+tag-template: '{{version}}'
+categories:
+  - name: 'Features'
+    label: 'feature'
+    match:
+      - type: 'pull_request'
+        label: 'feature'
+  - name: 'Bug Fixes'
+    label: 'bug'
+    match:
+      - type: 'pull_request'
+        label: 'bug'
+  - name: 'Documentation'
+    label: 'documentation'
+    match:
+      - type: 'pull_request'
+        label: 'documentation'
+  - name: 'Other Changes'
+    label: ''
+    match:
+      - type: 'pull_request'
+  - name: 'Known Issues'
+    label: 'known issue'
+    match:
+      - type: 'issue'
+        label: 'known issue'
 
-on:
-  push:
-    # branches to consider in the event; optional, defaults to all
-    branches:
-      - dev
-  # pull_request event is required only for autolabeler
-  pull_request:
-    # Only following types are handled by the action, but one can default to all as well
-    types: [opened, reopened, synchronize]
-  # pull_request_target event is required for autolabeler to support PRs from forks
-#  pull_request_target:
-#    types: [opened, reopened, synchronize]
+template: |
+  {{#if notes}}
+  {{#each notes}}
+  {{this}}
+  {{/each}}
+  {{/if}}
 
-permissions:
-  contents: read
+  {{#each categories}}
+  {{#if changes.[this.name]}}
+  ### {{this.name}}
 
-jobs:
-  update_release_draft:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '14.x'
-      - name: Install dependencies
-        run: npm install
-      - name: Draft release notes
-        uses: release-drafter/release-drafter@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          config-path: .github/release-drafter.yml
-
-env:
-  PROJECT_NAME: "Fase 2 Nível 3 Algorithm and Problems"
-
-  projects:
-    - name: "${{ env.PROJECT_NAME }}"
-      title: "Release notes for ${{ env.PROJECT_NAME }}"
-      tag: "${{ env.PROJECT_NAME | slugify }}"
-      match:
-        - "(?i)${{ env.PROJECT_NAME }}.*"
-      include-labels:
-        - "${{ env.PROJECT_NAME | slugify }}"
-      exclude-labels:
-        - "${{ env.PROJECT_NAME | slugify }} - ignore"
-
-  categories:
-    - title: "Novas funcionalidades"
-      labels:
-        - "feature"
-    - title: "Correções de bugs"
-      labels:
-        - "bug"
-
-  name-template: "Release {version}"
-  tag-template: "v{version}"
-
-  template: |
-    # ${{ env.PROJECT_NAME }}
-  
-    ## Short description
-  
-    Uma descrição curta do ${{ env.PROJECT_NAME }}.
-  
-    ## Novas funcionalidades
-  
-    ${{#each categories}}
-      {{#if this.labels}}
-      {{#if has_entries this.issues}}
-      ### {{this.title}}
-  
-      {{#each this.issues}}
-        - [{{.title}}]({{.html_url}}) ({{.number}}){{#if .labels}} {{#each .labels}} `{{.name}}` {{/each}}{{/if}}{{#if .pull_request}} ([#{{.pull_request.number}}]({{.pull_request.html_url}})){{/if}} by @{{.user.login}}
-      {{/each}}
-      {{/if}}
-      {{/if}}
+  {{#each changes.[this.name]}}
+  - {{#if this.pull_request}}
+    [{{this.pull_request.title}}]({{this.pull_request.html_url}}) ([#{{this.pull_request.number}}]({{this.pull_request.html_url}}))
+    {{/if}}
+    {{#if this.issue}}
+    [{{this.issue.title}}]({{this.issue.html_url}}) ([#{{this.issue.number}}]({{this.issue.html_url}}))
+    {{/if}}
+    {{#if this.labels}}
+    {{#each this.labels}}
+    {{this}} 
     {{/each}}
-  
-    ## Correções de bugs
-  
-    ${{#each categories}}
-      {{#if this.labels}}
-      {{#if has_entries this.issues}}
-      ### {{this.title}}
-  
-      {{#each this.issues}}
-        - [{{.title}}]({{.html_url}}) ({{.number}}){{#if .labels}} {{#each .labels}} `{{.name}}` {{/each}}{{/if}}{{#if .pull_request}} ([#{{.pull_request.number}}]({{.pull_request.html_url}})){{/if}} by @{{.user.login}}
-      {{/each}}
-      {{/if}}
-      {{/if}}
-    {{/each}}
-  
-    ## Lista de atividades
-  
-    | Nome do usuário | Pull Request | Issue | Labels |
-    | --------------- | ------------ | ----- | ------ |
-    {{#each data}}
-      | {{this.nome_usuario}} | [PR{{this.numero_pull_request}}]({{this.link_pull_request}}) | [Issue{{this.numero_issue}}]({{this.link_issue}}) | {{#if this.labels}}
-    {{/each}}
+    {{/if}}
+  {{/each}}
+
+  {{/if}}
+  {{/each}}

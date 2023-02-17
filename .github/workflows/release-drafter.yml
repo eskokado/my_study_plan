@@ -3,7 +3,17 @@ name: Release Drafter
 on:
   push:
     branches:
-      - main
+      - dev
+  # pull_request event is required only for autolabeler
+  pull_request:
+    # Only following types are handled by the action, but one can default to all as well
+    types: [opened, reopened, synchronize]
+  # pull_request_target event is required for autolabeler to support PRs from forks
+  # pull_request_target:
+  #   types: [opened, reopened, synchronize]
+
+permissions:
+  contents: read
 
 jobs:
   update_release_draft:
@@ -24,7 +34,7 @@ jobs:
           config-path: .github/release-drafter.yml
 
 env:
-  PROJECT_NAME: "My Study Plan"
+  PROJECT_NAME: "f2n3_algorithm_problemsn"
 
 projects:
   - name: "${{ env.PROJECT_NAME }}"

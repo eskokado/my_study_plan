@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/searching/fibonacci_search'
+require_relative '../../../lib/algorithms/searching/fibonacci_search'
 describe "Fibonacci search" do
   array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   it "Given an array call fibonacci search return index of element" do

@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/sorting/selection_sort'
+require_relative '../../../lib/algorithms/sorting/selection_sort'
 describe "Selection Sort" do
   array = [64, 25, 12, 22, 11]
   it "Given an array call selection sort return array sort" do

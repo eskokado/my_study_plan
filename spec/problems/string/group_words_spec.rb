@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/string/group_words'
+require_relative '../../../lib/problems/string/group_words'
 describe "Group Words" do
   it "groups words with same letter" do
     words = %w[ate eat tea tan nat bat]

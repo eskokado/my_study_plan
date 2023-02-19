@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/string/common_characters'
+require_relative '../../../lib/problems/string/common_characters'
 describe "Common Characters" do
   it 'returns the common characters in two strings' do
     array = ['banana', 'caneta']

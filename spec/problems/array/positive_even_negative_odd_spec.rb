@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/array/positive_even_negative_odd.rb'
+require_relative '../../../lib/problems/array/positive_even_negative_odd.rb'
 
 describe Problems::Arrays do
   describe ".positive_even_negative_odd" do

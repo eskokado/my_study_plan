@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/greedy/minimum_squares'
+require_relative '../../../lib/algorithms/greedy/minimum_squares'
 describe "Paper cut into Minimum number of squares" do
   it 'Given dimension width and height call min squares return area square' do
     l = 10 # width

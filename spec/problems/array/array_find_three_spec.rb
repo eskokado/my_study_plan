@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/array/array_find_three'
+require_relative '../../../lib/problems/array/array_find_three'
 
 describe "Print 3 largest" do
   it "should array size < 3 return message error" do

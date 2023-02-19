@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/greedy/minimum_product'
+require_relative '../../../lib/algorithms/greedy/minimum_product'
 
 describe "Miminum product subset of an array" do
   minimumProduct = MinimumProduct.new

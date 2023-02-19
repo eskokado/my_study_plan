@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/greedy/minimum_sum'
+require_relative '../../../lib/algorithms/greedy/minimum_sum'
 
 describe "Minimum Sum" do
   it "Ensure minimum sum" do

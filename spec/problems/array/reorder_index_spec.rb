@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/array/reorder_index'
+require_relative '../../../lib/problems/array/reorder_index'
 describe "Reorder Index" do
   it "returns the indexes of an array in ascending order" do
     arr = [5, 2, 8, 4, 9]

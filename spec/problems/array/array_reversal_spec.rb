@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/array/array_reversal'
+require_relative '../../../lib/problems/array/array_reversal'
 
 describe "Reversal array" do
   it "Should call reversal array return string" do

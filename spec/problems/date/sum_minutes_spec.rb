@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/date/sum_minutes'
+require_relative '../../../lib/problems/date/sum_minutes'
 describe 'Sum Minute' do
   it "returns the correct time when adding minutes to 10:00" do
     expect(Problems::Date.sum_minutes('10:00', 30)).to eq ('10:30')

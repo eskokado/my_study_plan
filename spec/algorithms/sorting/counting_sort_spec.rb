@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/sorting/counting_sort'
+require_relative '../../../lib/algorithms/sorting/counting_sort'
 
 describe "Counting Sort" do
   countingSort = CountingSort.new

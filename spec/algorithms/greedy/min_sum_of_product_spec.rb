@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/greedy/min_sum_of_product'
+require_relative '../../../lib/algorithms/greedy/min_sum_of_product'
 describe "Minimum Sum Of Product" do
   arrayA = [3, 1, 4]
   arrayB = [2, 5, 6]

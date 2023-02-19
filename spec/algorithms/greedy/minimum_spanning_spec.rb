@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/greedy/minimum_spanning'
+require_relative '../../../lib/algorithms/greedy/minimum_spanning'
 
 describe "Minimum Spanning" do
   it "Minimum Cost Spanning Tree" do

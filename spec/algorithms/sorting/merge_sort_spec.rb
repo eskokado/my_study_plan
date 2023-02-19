@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/sorting/merge_sort'
+require_relative '../../../lib/algorithms/sorting/merge_sort'
 describe "Merge Sort" do
   arr = [38, 27, 43, 3, 9, 82, 10]
   it "Given an array call merge sort return an array sorting" do

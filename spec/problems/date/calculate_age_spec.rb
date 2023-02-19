@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/date/calculate_age'
+require_relative '../../../lib/problems/date/calculate_age'
 
 describe "Calculate Age" do
   it "Function call calculated age" do

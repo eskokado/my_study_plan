@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/greedy/maximize_array'
+require_relative '../../../lib/algorithms/greedy/maximize_array'
 
 describe "Maximize Array" do
   it "program to find maximum array sum after at most k negations " do

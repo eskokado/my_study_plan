@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/date/day_of_week'
+require_relative '../../../lib/problems/date/day_of_week'
 describe "Day of Week" do
 
   it "returns 0 for Sunday" do

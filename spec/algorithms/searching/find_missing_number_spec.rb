@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/searching/find_missing_number'
+require_relative '../../../lib/algorithms/searching/find_missing_number'
 
 describe "Find Missing Number" do
   array = [1, 2, 4, 5, 6, 7, 8]

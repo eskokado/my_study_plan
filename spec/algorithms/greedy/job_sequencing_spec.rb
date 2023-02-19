@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/greedy/job_sequencing'
+require_relative '../../../lib/algorithms/greedy/job_sequencing'
 describe "Job Sequencing Problem" do
   jobs = [['a', 2, 100], ['b', 1, 19], ['c', 2, 27], ['d', 1, 25], ['e', 3, 15]]
   n = jobs.size

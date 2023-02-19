@@ -1,4 +1,4 @@
-require_relative '../../../app/problems/string/counting_string'
+require_relative '../../../lib/problems/string/counting_string'
 
 describe "Count string" do
   str = "#GeeKs01fOr@gEEks07"

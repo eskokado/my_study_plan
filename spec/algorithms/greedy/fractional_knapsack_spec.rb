@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/greedy/fractional_knapsack'
+require_relative '../../../lib/algorithms/greedy/fractional_knapsack'
 describe "Fractional Knapsack Problem" do
   it "Given wheigts, values and capacity call fractional knapsack return 240.0" do
     weights = [10, 20, 30]

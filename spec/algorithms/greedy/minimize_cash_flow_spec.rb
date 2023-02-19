@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/greedy/minimize_cash_flow'
+require_relative '../../../lib/algorithms/greedy/minimize_cash_flow'
 RSpec.describe Algorithms::Greedy do
   describe "#minimize_cash_flow" do
     it "correctly balances the debts in a list of transactions" do

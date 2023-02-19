@@ -1,4 +1,4 @@
-require_relative '../../../app/algorithms/greedy/find_maximum'
+require_relative '../../../lib/algorithms/greedy/find_maximum'
 
 describe "Find maximum sum" do
   findMaximum = FindMaximum.new

@@ -57,5 +57,15 @@ describe MyGem::Problems::Strings::CountingString do
       end
     end
 
+    context "when given a string with a mix of characters" do
+      it "returns the correct count for each character type" do
+        counting_string = MyGem::Problems::Strings::CountingString.new
+        counting_string.count("Abc123!@#")
+        expect(counting_string.countUpper).to eq(1)
+        expect(counting_string.countLower).to eq(2)
+        expect(counting_string.countNumber).to eq(3)
+        expect(counting_string.countSpecial).to eq(3)
+      end
+    end
   end
 end

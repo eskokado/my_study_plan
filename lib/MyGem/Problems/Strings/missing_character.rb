@@ -29,4 +29,3 @@ module MyGem
     end
   end
 end
-

@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = "my_gem"
-  spec.version = "0.1.0"
+  spec.version = "0.5.0"
   spec.authors = ["Edson Shideki Kokado"]
   spec.email = ["eskokado@gmail.com"]
   spec.summary = "My Gem - Coleção de algoritmos em Ruby"

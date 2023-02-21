@@ -35,5 +35,27 @@ describe MyGem::Problems::Strings::CountingString do
       end
     end
 
+    context "when given a string with only numbers" do
+      it "returns the correct count for numbers" do
+        counting_string = MyGem::Problems::Strings::CountingString.new
+        counting_string.count("123456")
+        expect(counting_string.countUpper).to eq(0)
+        expect(counting_string.countLower).to eq(0)
+        expect(counting_string.countNumber).to eq(6)
+        expect(counting_string.countSpecial).to eq(0)
+      end
+    end
+
+    context "when given a string with only special characters" do
+      it "returns the correct count for special characters" do
+        counting_string = MyGem::Problems::Strings::CountingString.new
+        counting_string.count("!@#$%^")
+        expect(counting_string.countUpper).to eq(0)
+        expect(counting_string.countLower).to eq(0)
+        expect(counting_string.countNumber).to eq(0)
+        expect(counting_string.countSpecial).to eq(6)
+      end
+    end
+
   end
 end

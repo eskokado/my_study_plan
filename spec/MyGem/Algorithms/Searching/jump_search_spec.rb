@@ -10,4 +10,10 @@ describe "Jump Search" do
     expect(result).to eq(expectValue)
   end
 
+  item = 99
+  expectValue = -1
+  it "Given array call jump search result #{expectValue}" do
+    result = jumpSearch.search(arr, size, item)
+    expect(result).to eq(expectValue)
+  end
 end

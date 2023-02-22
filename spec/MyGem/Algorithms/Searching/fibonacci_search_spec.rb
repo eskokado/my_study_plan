@@ -7,4 +7,9 @@ describe "Fibonacci search" do
     expect(result).to be > -1
   end
 
+  it "Given an array call fibonacci search return -1" do
+    item = 11
+    result = MyGem::Algorithms::Searching::FibonacciSearch.search(array, item)
+    expect(result).to be == -1
+  end
 end

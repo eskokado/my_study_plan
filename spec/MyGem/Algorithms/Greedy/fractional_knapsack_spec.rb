@@ -16,4 +16,8 @@ RSpec.describe "Fractional Knapsack" do
     expect(MyGem::Algorithms::Greedy::Graph.frac_knap_sack(items, 40)).to eq(180.0)
   end
 
+  it "calculates the correct maximum value with items 3, 4 and 5" do
+    items = [item3, item4, item5]
+    expect(MyGem::Algorithms::Greedy::Graph.frac_knap_sack(items, 35)).to eq(136.7)
+  end
 end

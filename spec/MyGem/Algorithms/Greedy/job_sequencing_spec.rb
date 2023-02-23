@@ -15,4 +15,8 @@ RSpec.describe 'job_scheduling' do
     expect(scheduled_jobs.map(&:id)).to eq([1, 2, 5])
   end
 
+  it 'handles empty job list' do
+    scheduled_jobs = MyGem::Algorithms::Greedy::Job.job_scheduling([])
+    expect(scheduled_jobs).to be_empty
+  end
 end

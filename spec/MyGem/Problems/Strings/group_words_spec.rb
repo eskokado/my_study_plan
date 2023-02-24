@@ -10,4 +10,7 @@ describe "Group Words" do
     expect(MyGem::Problems::String::GroupWords.find([])).to eq([])
   end
 
+  it "handles input with single word" do
+    expect(MyGem::Problems::String::GroupWords.find(%w[hello])).to eq([%w[hello]])
+  end
 end

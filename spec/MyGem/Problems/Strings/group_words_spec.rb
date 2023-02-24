@@ -6,4 +6,8 @@ describe "Group Words" do
     expect(result).to match_array([%w[ate eat tea], %w[tan nat], %w[bat]])
   end
 
+  it "handles empty input" do
+    expect(MyGem::Problems::String::GroupWords.find([])).to eq([])
+  end
+
 end

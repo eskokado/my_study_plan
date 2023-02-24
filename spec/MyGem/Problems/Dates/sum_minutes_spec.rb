@@ -7,4 +7,9 @@ describe 'Sum Minute' do
     expect(MyGem::Problems::Dates::SumMinutes.sum('10:00', 1500)).to eq ('11:00')
   end
 
+  it 'returns the correct time when adding minutes to 23:59' do
+    expect(MyGem::Problems::Dates::SumMinutes.sum('23:59', 1)).to eq('00:00') # rolagem de hora
+    expect(MyGem::Problems::Dates::SumMinutes.sum('23:59', 60)).to eq('00:59') # rolagem de hora
+    expect(MyGem::Problems::Dates::SumMinutes.sum('23:59', 1440)).to eq('23:59') # 24 horas
+  end
 end

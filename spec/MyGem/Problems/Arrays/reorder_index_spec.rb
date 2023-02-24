@@ -10,4 +10,8 @@ describe "Reorder Index" do
     expect(MyGem::Problems::Arrays::ReorderIndex.handle(arr, :desc)).to eq([4, 2, 0, 3, 1])
   end
 
+  it "raises an ArgumentError if the order parameter is invalid" do
+    arr = [5, 2, 8, 4, 9]
+    expect { MyGem::Problems::Arrays::ReorderIndex.handle(arr, :invalid) }.to raise_error(ArgumentError)
+  end
 end

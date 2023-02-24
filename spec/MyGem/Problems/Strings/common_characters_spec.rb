@@ -6,4 +6,10 @@ describe "Common Characters" do
     expect(result).to eq(['a', 'n'])
   end
 
+  it 'returns common characters in three strings' do
+    array = ['banana', 'caneta', 'dança']
+    result = MyGem::Problems::String::CommomCharacters.find(array)
+    expect(result).to eq(['a', 'n'])
+  end
+
 end

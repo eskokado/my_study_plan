@@ -12,4 +12,10 @@ describe "Common Characters" do
     expect(result).to eq(['a', 'n'])
   end
 
+  it 'returns common characters in two strings' do
+    array = ['banana', 'macaco']
+    result = MyGem::Problems::String::CommomCharacters.find(array)
+    expect(result).to eq(['a'])
+  end
+
 end

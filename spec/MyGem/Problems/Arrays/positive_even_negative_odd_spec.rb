@@ -14,5 +14,10 @@ describe MyGem::Problems::Arrays::PositiveEvenNegativeOdd do
       expect(result).to eq([1, nil, 2, nil, 3, nil, 4, nil, 5, nil, 6])
     end
 
+    it "rearranges the array correctly for an array with only negative numbers" do
+      arr = [-1, -2, -3, -4, -5, -6]
+      result = MyGem::Problems::Arrays::PositiveEvenNegativeOdd.handle(arr)
+      expect(result).to eq([nil, -1, nil, -2, nil, -3, nil, -4, nil, -5, nil, -6])
+    end
   end
 end

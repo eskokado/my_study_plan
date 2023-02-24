@@ -25,4 +25,7 @@ describe "Day of Week" do
     expect(MyGem::Problems::Dates::DayOfWeek.display(2023, 2, 24)).to eq(5)
   end
 
+  it "returns 6 for Saturday" do
+    expect(MyGem::Problems::Dates::DayOfWeek.display(2023, 2, 25)).to eq(6)
+  end
 end

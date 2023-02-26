@@ -1,29 +1,23 @@
 module Algorithms
   module Greedy
-    def self.minimize_cash_flow(transactions)
+    def self.minimize_cash_flow(transactions, max_iterations: 20)
       balances = Hash.new(0)
       transactions.sort_by { |t| [t[0], t[1]] }.each do |from, to, amount|
         balances[from] -= amount
         balances[to] += amount
       end
 
-      transaction_list = []
-      while !balances.empty?
-        max_debtor, _ = balances.max
-        max_creditor, _ = balances.min
-
-        break if balances[max_debtor] == 0 && balances[max_creditor] == 0
-
-        amount = [balances[max_debtor].abs, balances[max_creditor].abs].min
-        balances[max_debtor] += amount
-        balances[max_creditor] -= amount
-        transaction_list << [max_debtor, max_creditor, amount]
-
-        balances.delete(max_debtor) if balances[max_debtor] == 0
-        balances.delete(max_creditor) if balances[max_creditor] == 0
+      # executa o algoritmo de "minimum cash flow"
+      transactions_list = []
+      while balances.values.any?(&:nonzero?)
+        max_debtor, max_creditor = balances.minmax_by { |_, balance| balance }
+        amount = [max_debtor.last.abs, max_creditor.last.abs].min
+        transactions_list << [max_debtor.first, max_creditor.first, amount]
+        balances[max_debtor.first] += amount
+        balances[max_creditor.first] -= amount
       end
 
-      transaction_list
+      transactions_list
     end
   end
 end

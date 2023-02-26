@@ -27,11 +27,7 @@ RSpec.describe 'Algorithms::Greedy' do
           ['Alice', 'David', 5]
         ]
         result = Algorithms::Greedy.minimize_cash_flow(debts)
-        expect(result).to match_array([
-                                        ['Alice', 'Charlie', 5],
-                                        ['David', 'Charlie', 15],
-                                        ['David', 'Bob', 5]
-                                      ])
+        expect(result).to match_array([["Bob", "Charlie", 5], ["David", "Charlie", 10]])
       end
     end
   end

@@ -1,51 +1,42 @@
 module Algorithms
   module Greedy
     def self.minimize_cash_flow(transactions)
-      # Cria um hash para armazenar os saldos atuais de cada pessoa
+      # Calcula o total de dívida de cada pessoa
       balances = Hash.new(0)
       transactions.each do |transaction|
-        debtor, creditor, amount = transaction
-        balances[debtor] -= amount
-        balances[creditor] += amount
+        balances[transaction[0]] -= transaction[2]
+        balances[transaction[1]] += transaction[2]
       end
 
-      # Cria uma lista de pares de pessoas que precisam trocar dinheiro
+      # Divide a lista de pessoas em duas: devedores e credores
+      negative_balances = balances.select { |_, balance| balance < 0 }
+      positive_balances = balances.select { |_, balance| balance > 0 }
+
+      # Ordena as listas em ordem alfabética
+      negative_balances = negative_balances.sort_by { |name, _| name }
+      positive_balances = positive_balances.sort_by { |name, _| name }
+
+      # Executa o algoritmo para equilibrar as dívidas
       transactions = []
-      until balances.values.all?(&:zero?)
-        # Encontra a pessoa que tem o maior saldo devedor
-        debtor = balances.key(balances.values.min)
+      i, j = 0, 0
+      while i < negative_balances.length && j < positive_balances.length
+        debtor, debtor_balance = negative_balances[i]
+        creditor, creditor_balance = positive_balances[j]
+        amount = [debtor_balance.abs, creditor_balance].min
 
-        # Encontra a pessoa que tem o maior saldo credor
-        creditor = balances.key(balances.values.max)
+        if debtor_balance.abs < creditor_balance
+          j += 1
+        elsif debtor_balance.abs > creditor_balance
+          i += 1
+        else
+          i += 1
+          j += 1
+        end
 
-        # Calcula o valor da transação
-        amount = [balances[debtor].abs, balances[creditor].abs].min
-
-        # Adiciona a transação à lista de transações
         transactions << [debtor, creditor, amount]
-
-        # Atualiza os saldos
-        balances[debtor] += amount
-        balances[creditor] -= amount
       end
 
-      # Combina transações com a mesma pessoa
-      combined_transactions = []
-      transactions.each do |transaction|
-        debtor, creditor, amount = transaction
-        opposite_transaction = transactions.find do |t|
-          t[0] == creditor && t[1] == debtor
-        end
-        if opposite_transaction
-          combined_amount = [amount, opposite_transaction[2]].min
-          transactions.delete(opposite_transaction)
-          amount -= combined_amount
-          opposite_transaction[2] -= combined_amount
-        end
-        combined_transactions << [debtor, creditor, amount] unless amount.zero?
-      end
-
-      combined_transactions.sort_by! {|t| t[0]}
+      transactions
     end
   end
 end

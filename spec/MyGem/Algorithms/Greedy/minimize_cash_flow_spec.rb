@@ -30,6 +30,5 @@ RSpec.describe 'MyGem::Algorithms::Greedy::MinimizeCashFlow' do
         expect(result).to match_array([["Bob", "Charlie", 5], ["David", "Charlie", 10]])
       end
     end
-
   end
 end

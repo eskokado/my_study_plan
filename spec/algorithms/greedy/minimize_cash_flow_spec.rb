@@ -7,5 +7,13 @@ RSpec.describe 'Algorithms::Greedy' do
       end
     end
 
+    context 'when there is only one debt' do
+      it 'returns a list with one transaction' do
+        debts = [['Alice', 'Bob', 10]]
+        result = Algorithms::Greedy.minimize_cash_flow(debts)
+        expect(result).to eq([['Alice', 'Bob', 10]])
+      end
+    end
+
   end
 end

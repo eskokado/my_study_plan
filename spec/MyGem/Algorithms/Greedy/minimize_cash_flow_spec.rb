@@ -6,5 +6,14 @@ RSpec.describe 'MyGem::Algorithms::Greedy::MinimizeCashFlow' do
         expect(MyGem::Algorithms::Greedy::MinimizeCashFlow.handle([])).to eq([])
       end
     end
+
+    context 'when there is only one debt' do
+      it 'returns a list with one transaction' do
+        debts = [['Alice', 'Bob', 10]]
+        result = MyGem::Algorithms::Greedy::MinimizeCashFlow.handle(debts)
+        expect(result).to eq([['Alice', 'Bob', 10]])
+      end
+    end
+
   end
 end

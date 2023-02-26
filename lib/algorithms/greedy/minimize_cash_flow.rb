@@ -1,42 +1,29 @@
 module Algorithms
   module Greedy
     def self.minimize_cash_flow(transactions)
-      # Calcula o total de dívida de cada pessoa
       balances = Hash.new(0)
-      transactions.each do |transaction|
-        balances[transaction[0]] -= transaction[2]
-        balances[transaction[1]] += transaction[2]
+      transactions.sort_by { |t| [t[0], t[1]] }.each do |from, to, amount|
+        balances[from] -= amount
+        balances[to] += amount
       end
 
-      # Divide a lista de pessoas em duas: devedores e credores
-      negative_balances = balances.select { |_, balance| balance < 0 }
-      positive_balances = balances.select { |_, balance| balance > 0 }
+      transaction_list = []
+      while !balances.empty?
+        max_debtor, _ = balances.max
+        max_creditor, _ = balances.min
 
-      # Ordena as listas em ordem alfabética
-      negative_balances = negative_balances.sort_by { |name, _| name }
-      positive_balances = positive_balances.sort_by { |name, _| name }
+        break if balances[max_debtor] == 0 && balances[max_creditor] == 0
 
-      # Executa o algoritmo para equilibrar as dívidas
-      transactions = []
-      i, j = 0, 0
-      while i < negative_balances.length && j < positive_balances.length
-        debtor, debtor_balance = negative_balances[i]
-        creditor, creditor_balance = positive_balances[j]
-        amount = [debtor_balance.abs, creditor_balance].min
+        amount = [balances[max_debtor].abs, balances[max_creditor].abs].min
+        balances[max_debtor] += amount
+        balances[max_creditor] -= amount
+        transaction_list << [max_debtor, max_creditor, amount]
 
-        if debtor_balance.abs < creditor_balance
-          j += 1
-        elsif debtor_balance.abs > creditor_balance
-          i += 1
-        else
-          i += 1
-          j += 1
-        end
-
-        transactions << [debtor, creditor, amount]
+        balances.delete(max_debtor) if balances[max_debtor] == 0
+        balances.delete(max_creditor) if balances[max_creditor] == 0
       end
 
-      transactions
+      transaction_list
     end
   end
 end

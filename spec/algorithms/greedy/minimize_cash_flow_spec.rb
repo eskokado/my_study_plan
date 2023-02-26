@@ -15,5 +15,20 @@ RSpec.describe 'Algorithms::Greedy' do
       end
     end
 
+    context 'when there are multiple debts involving multiple people' do
+      it 'correctly balances the debts' do
+        debts = [
+          ['Alice', 'Bob', 10],
+          ['Bob', 'Charlie', 20],
+          ['Charlie', 'Alice', 15],
+          ['David', 'Charlie', 25],
+          ['David', 'Bob', 5],
+          ['Charlie', 'David', 15],
+          ['Alice', 'David', 5]
+        ]
+        result = Algorithms::Greedy.minimize_cash_flow(debts)
+        expect(result).to match_array([["Bob", "Charlie", 5], ["David", "Charlie", 10]])
+      end
+    end
   end
 end

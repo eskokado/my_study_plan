@@ -1,16 +1,16 @@
-require_relative '../../../lib/algorithms/greedy/minimize_cash_flow'
-RSpec.describe 'Algorithms::Greedy' do
-  describe '#minimize_cash_flow' do
+require_relative '../../../../lib/MyGem/Algorithms/Greedy/minimize_cash_flow'
+RSpec.describe 'MyGem::Algorithms::Greedy::MinimizeCashFlow' do
+  describe '#handle' do
     context 'when there are no debts' do
       it 'returns an empty list' do
-        expect(Algorithms::Greedy.minimize_cash_flow([])).to eq([])
+        expect(MyGem::Algorithms::Greedy::MinimizeCashFlow.handle([])).to eq([])
       end
     end
 
     context 'when there is only one debt' do
       it 'returns a list with one transaction' do
         debts = [['Alice', 'Bob', 10]]
-        result = Algorithms::Greedy.minimize_cash_flow(debts)
+        result = MyGem::Algorithms::Greedy::MinimizeCashFlow.handle(debts)
         expect(result).to eq([['Alice', 'Bob', 10]])
       end
     end
@@ -26,7 +26,7 @@ RSpec.describe 'Algorithms::Greedy' do
           ['Charlie', 'David', 15],
           ['Alice', 'David', 5]
         ]
-        result = Algorithms::Greedy.minimize_cash_flow(debts)
+        result = MyGem::Algorithms::Greedy::MinimizeCashFlow.handle(debts)
         expect(result).to match_array([["Bob", "Charlie", 5], ["David", "Charlie", 10]])
       end
     end
